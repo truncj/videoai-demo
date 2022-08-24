@@ -6,7 +6,7 @@
 
 2. Select your admin@altrostrat account
 
-![auth](./images/auth.png)
+<img src="./images/auth.png" width="50%" height="50%" />
 
 3. Run the following command
 

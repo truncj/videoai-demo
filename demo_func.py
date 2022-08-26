@@ -2,6 +2,7 @@ from google.cloud import videointelligence_v1 as vi
 from typing import Optional, Sequence
 
 
+# unused for now, streamlining API requests
 def detect_shot_changes(video_uri: str) -> vi.VideoAnnotationResults:
     video_client = vi.VideoIntelligenceServiceClient()
     features = [vi.Feature.SHOT_CHANGE_DETECTION]
@@ -22,15 +23,23 @@ def print_video_shots(results: vi.VideoAnnotationResults):
         print(f"{i+1:>3} | {t1:7.3f} | {t2:7.3f}")
 
 
+# combined with shot change detection to speed up demo
 def detect_labels(
         video_uri: str,
         mode: vi.LabelDetectionMode,
         segments: Optional[Sequence[vi.VideoSegment]] = None,
-) -> vi.VideoAnnotationResults:
+        ) -> vi.VideoAnnotationResults:
+
     video_client = vi.VideoIntelligenceServiceClient()
-    features = [vi.Feature.LABEL_DETECTION]
+
+    features = [
+        vi.Feature.LABEL_DETECTION,
+        vi.Feature.SHOT_CHANGE_DETECTION
+        ]
+
     config = vi.LabelDetectionConfig(label_detection_mode=mode)
     context = vi.VideoContext(segments=segments, label_detection_config=config)
+
     request = vi.AnnotateVideoRequest(
         input_uri=video_uri,
         features=features,
@@ -102,6 +111,7 @@ def sort_by_first_segment_start_and_confidence(labels: Sequence[vi.LabelAnnotati
 '''
 
 
+# noinspection PyTypeChecker
 def transcribe_speech(
         video_uri: str,
         language_code: str,

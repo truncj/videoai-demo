@@ -4,7 +4,7 @@
 
 `gcloud auth application-default login`
 
-2. Select your admin@altrostrat account
+2. Select your account
 
 <img src="./images/auth.png" width="50%" height="50%" />
 

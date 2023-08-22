@@ -4,15 +4,11 @@
 
 `gcloud auth application-default login`
 
-2. Select your account
-
-<img src="./images/auth.png" width="50%" height="50%" />
-
-3. Run the following command
+2. Run the following command
 
 `python demo.py`
 
-4. Example output:
+3. Example output:
 
 ```
 Processing video "gs://cloud-samples-data/video/JaneGoodall.mp4"...
